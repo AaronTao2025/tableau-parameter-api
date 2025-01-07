@@ -1,6 +1,4 @@
 const express = require('express');
-const cors = require('cors'); // Import CORS middleware
-const https = require('https');
 const fs = require('fs');
 const app = express();
 const port = 5001;
@@ -17,9 +15,6 @@ app.use((req, res, next) => {
   console.log(`[${timestamp}] ${req.method} ${req.url}`);
   next(); // Proceed to the next middleware or route handler
 });
-
-// Use CORS middleware to allow cross-origin requests
-app.use(cors()); // This will allow all origins by default
 
 let parameterValues = {};
 
@@ -43,12 +38,7 @@ app.post('/updateParameterValue', (req, res) => {
   }
 });
 
-// Create an HTTPS server
-const server = https.createServer({
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-}, app);
-
-server.listen(port, () => {
+// Create an HTTP server
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
