@@ -3,9 +3,6 @@ const fs = require('fs');
 const app = express();
 const port = 5001;
 
-// Middleware to serve static files from the "dist" directory
-app.use(express.static('dist')); // Adjust "dist" to your actual static file directory
-
 // Middleware to parse JSON requests
 app.use(express.json());
 
@@ -15,6 +12,9 @@ app.use((req, res, next) => {
   console.log(`[${timestamp}] ${req.method} ${req.url}`);
   next(); // Proceed to the next middleware or route handler
 });
+
+// Middleware to serve static files from the "dist" directory
+app.use(express.static('dist')); // Adjust "dist" to your actual static file directory
 
 let parameterValues = {};
 
