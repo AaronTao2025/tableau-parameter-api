@@ -45,7 +45,7 @@
 
       // Update the backend server with the current value
       $.ajax({
-        url: 'https://162.62.225.65:5001/updateParameterValue',  // Corrected to the update endpoint
+        url: 'https://sc-params.gdit.deltaverse-intl.com:5001/updateParameterValue',  // Corrected to the update endpoint
         method: 'POST',
         data: JSON.stringify({ 'key' : param.name , 'value' : value}),  // Send the value in the request body
         contentType: 'application/json',
